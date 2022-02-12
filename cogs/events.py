@@ -22,8 +22,9 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.channel.id in deletemessagechannels:
-            logchannel = message.guild.get_channel(deletemessagelog)
-            await logchannel.send(f"{message.channel.mention}\n\n{message.content[0:1950]}")
+            if not message.author.bot == True:
+                logchannel = message.guild.get_channel(deletemessagelog)
+                await logchannel.send(f"{message.channel.mention}\n\n{message.content[0:1950]}")
             await message.delete()
 
 

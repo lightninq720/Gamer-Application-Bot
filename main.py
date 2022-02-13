@@ -4,6 +4,8 @@ import json
 from discord.ext import commands , tasks
 from discord_slash import SlashCommand, SlashContext
 
+os.chdir("./")
+
 with open("config.json") as f:
     data = json.load(f)
 TOKEN = data["TOKEN"]

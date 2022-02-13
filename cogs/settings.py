@@ -8,7 +8,7 @@ from discord_slash.model import ButtonStyle
 from discord_slash.utils.manage_commands import create_option, create_choice
 
 class Settings(commands.Cog):
-    def __innit__(self, client):
+    def __init__(self, client):
         self.client = client
 
     @cog_ext.cog_subcommand(base="deletemessagechannel",

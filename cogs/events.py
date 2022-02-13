@@ -16,7 +16,7 @@ with open("config.json") as f:
 
 
 class Events(commands.Cog):
-    def __innit__(self, client):
+    def __init__(self, client):
         self.client = client
 
     @commands.Cog.listener()

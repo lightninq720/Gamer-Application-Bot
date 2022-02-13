@@ -24,7 +24,8 @@ class Events(commands.Cog):
         if message.channel.id in deletemessagechannels:
             if not message.author.bot == True:
                 logchannel = message.guild.get_channel(deletemessagelog)
-                await logchannel.send(f"{message.channel.mention}\n\n{message.content[0:1950]}")
+                embed=discord.Embed(title="Application", description=f"{message.content[0:3500]}")
+                await logchannel.send(f"Message from {message.author.mention}/{message.author.id} in {message.channel.mention}/{message.channel.mention}", embed=embed)
             await message.delete()
 
 

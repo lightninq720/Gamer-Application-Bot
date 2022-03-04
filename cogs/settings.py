@@ -1,6 +1,7 @@
 import nextcord
 from nextcord.ext import commands, tasks
 from nextcord import Interaction, SlashOption
+from nextcord.abc import GuildChannel
 import asyncio
 import json
 
@@ -15,10 +16,11 @@ class Settings(commands.Cog):
     async def _deletedmessagechannel_add(
         self,
         ctx: Interaction,
-        channel : nextcord.TextChannel = SlashOption(
+        channel : GuildChannel = SlashOption(
             name="channel",
             description="Channel to add to deleted message channels",
-            required=True
+            required=True,
+            channel_types=[nextcord.ChannelType.text]
         )
     ):
         if not ctx.user.guild_permissions.administrator == True:
@@ -39,10 +41,11 @@ class Settings(commands.Cog):
     async def _deletedmessagechannel_remove(
         self,
         ctx: Interaction,
-        channel : nextcord.TextChannel = SlashOption(
+        channel : GuildChannel = SlashOption(
             name="channel",
             description="Channel to remove from deleted message channels",
-            required=True
+            required=True,
+            channel_types=[nextcord.ChannelType.text]
         )
     ):
         if not ctx.user.guild_permissions.administrator == True:
@@ -78,13 +81,14 @@ class Settings(commands.Cog):
     async def _deletedmessagechannel_log(
         self,
         ctx: Interaction,
-        channel : nextcord.TextChannel = SlashOption(
+        channel : GuildChannel = SlashOption(
             name="channel",
             description="Channel to use as the deleted message log channel",
-            required=True
+            required=True,
+            channel_types=[nextcord.ChannelType.text]
         )
     ):
-        if not ctx.author.guild_permissions.administrator == True:
+        if not ctx.user.guild_permissions.administrator == True:
             await ctx.send("You need `administrator` permissions to run this command", ephemeral=True)
             return
         with open("config.json") as f:

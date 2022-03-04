@@ -5,11 +5,6 @@ import asyncio
 import json
 
 
-with open("config.json") as f:
-    configData = json.load(f)
-    deletemessagechannels = configData["delete_messages_channel"]
-    deletemessagelog = configData["delete_messages_channel_log"]
-
 
 class Events(commands.Cog):
     def __init__(self, client):
@@ -17,6 +12,10 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        with open("config.json") as f:
+            configData = json.load(f)
+            deletemessagechannels = configData["delete_messages_channel"]
+            deletemessagelog = configData["delete_messages_channel_log"]
         if message.channel.id in deletemessagechannels:
             if not message.author.bot == True:
                 logchannel = message.guild.get_channel(deletemessagelog)

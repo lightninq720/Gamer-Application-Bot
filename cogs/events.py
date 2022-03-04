@@ -1,18 +1,9 @@
-import discord
-from discord.ext import commands, tasks
+import nextcord
+from nextcord.ext import commands, tasks
+from nextcord import Interaction, SlashOption
+import asyncio
 import json
-from discord_slash import cog_ext, SlashContext
-from discord_slash.utils.manage_components import create_button, create_actionrow
-from discord_slash.utils.manage_components import create_select, create_select_option, create_actionrow
-from discord_slash.model import ButtonStyle
-from discord_slash.utils.manage_commands import create_option, create_choice
-from discord_slash.utils.manage_components import wait_for_component
 
-
-with open("config.json") as f:
-    configData = json.load(f)
-    deletemessagechannels = configData["delete_messages_channel"]
-    deletemessagelog = configData["delete_messages_channel_log"]
 
 
 class Events(commands.Cog):
@@ -21,10 +12,14 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        with open("config.json") as f:
+            configData = json.load(f)
+            deletemessagechannels = configData["delete_messages_channel"]
+            deletemessagelog = configData["delete_messages_channel_log"]
         if message.channel.id in deletemessagechannels:
             if not message.author.bot == True:
                 logchannel = message.guild.get_channel(deletemessagelog)
-                embed=discord.Embed(title="Application", description=f"{message.content[0:3500]}")
+                embed=nextcord.Embed(title="Application", description=f"{message.content[0:3500]}")
                 await logchannel.send(f"Message from {message.author.mention}/{message.author.id} in {message.channel.mention}/{message.channel.id}", embed=embed)
             await message.delete()
 

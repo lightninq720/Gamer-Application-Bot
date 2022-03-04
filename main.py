@@ -1,8 +1,8 @@
-import discord
+import nextcord
+from nextcord.ext import commands, tasks
+from nextcord import Interaction, SlashOption
 import os
 import json
-from discord.ext import commands , tasks
-from discord_slash import SlashCommand, SlashContext
 
 os.chdir("./")
 
@@ -12,11 +12,10 @@ TOKEN = data["TOKEN"]
 
 
 
-intents = discord.Intents.default()
+intents = nextcord.Intents.default()
 
 intents.members = True
 client = commands.Bot(command_prefix = "cringe", intents = intents)
-slash = SlashCommand(client, sync_commands=True, sync_on_cog_reload=True)
 
 client.remove_command("help")
 
@@ -34,7 +33,7 @@ async def on_ready():
 
     print(f"Logged in as {client.user}!")
 
-    await client.change_presence(status = discord.Status.online, activity=discord.Activity(type=discord.ActivityType.playing, name="Join rain"))
+    await client.change_presence(status = nextcord.Status.online, activity=nextcord.Activity(type=nextcord.ActivityType.playing, name="Join rain"))
 
 
 client.run(TOKEN)

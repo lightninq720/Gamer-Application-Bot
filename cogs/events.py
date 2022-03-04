@@ -14,8 +14,8 @@ class Events(commands.Cog):
     async def on_message(self, message):
         with open("config.json") as f:
             configData = json.load(f)
-            deletemessagechannels = configData["delete_messages_channel"]
-            deletemessagelog = configData["delete_messages_channel_log"]
+        deletemessagechannels = configData["delete_messages_channel"]
+        deletemessagelog = configData["delete_messages_channel_log"]
         if message.channel.id in deletemessagechannels:
             if not message.author.bot == True:
                 logchannel = message.guild.get_channel(deletemessagelog)

@@ -1,2 +1,2 @@
-# Rain-Guild
-Bot for rain guild
+# Gamer Application Bot
+Application bot for gamer guild

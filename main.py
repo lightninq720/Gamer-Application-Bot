@@ -29,11 +29,11 @@ for filename in os.listdir('./cogs'):
 
 @client.event
 async def on_ready():
-    print ("Rain Guild Bot Ready")
+    print ("Gamer Application Guild Bot Ready")
 
     print(f"Logged in as {client.user}!")
 
-    await client.change_presence(status = nextcord.Status.online, activity=nextcord.Activity(type=nextcord.ActivityType.playing, name="Join rain"))
+    await client.change_presence(status = nextcord.Status.online, activity=nextcord.Activity(type=nextcord.ActivityType.playing, name="Join Gamer"))
 
 
 client.run(TOKEN)
